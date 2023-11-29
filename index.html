@@ -51,6 +51,7 @@
 
     .filter-option {
       border-radius: 0px;
+      color: black;
     }
 
     .tooltip {
@@ -72,16 +73,54 @@
       width: 10rem;
     }
 
+    .panel-vertical {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .legend-item {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .legend-icon {
+      height: 0.5rem;
+      width: 0.5rem;
+      border: 1px solid black;
+      margin-right: 1rem;
+    }
+
+    .orange {
+      background-color: #FF8C00;
+    }
+
+    .blue {
+      background-color: #00AFFF;
+    }
+
     #dashboard {
+      margin: 2rem;
+      padding: 1rem;
+      box-shadow: 0 0 5px 0 black;
+      background-color: white;
+      height: 200px;
+    }
+
+    #legend {
+      margin: 2rem;
+      padding: 1rem;
+      box-shadow: 0 0 5px 0 black;
+      background-color: white;
+      height: 200px;
+    }
+
+    .dashboard-inner {
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
-      margin: 2rem;
-      padding: 1rem;
       width: 550px;
-      height: 100px;
-      box-shadow: 0 0 5px 0 black;
-      background-color: white;
+      max-height: -webkit-fill-available;
     }
 
     #beehive-charges {
@@ -125,25 +164,26 @@
 
   <div class="titleboard">
     <h1 class="title">Annual Medical Insurance Costs</h1>
-    <div>Data sourced from <a href="https://www.kaggle.com/datasets/willianoliveiragibin/healthcare-insurance">Kaggle.com</a></div>
-    <br/>
+    <div>Data sourced from <a
+        href="https://www.kaggle.com/datasets/willianoliveiragibin/healthcare-insurance">Kaggle.com</a></div>
+    <br />
     <div id="region-dropdown" class="filter-dropdown">
       <label for="regionSelector">Select Region:</label>
       <select id="regionSelector" class="filter-selection">
-        <option value="All">All</option>
-        <option value="northeast">Northeast</option>
-        <option value="northwest">Northwest</option>
-        <option value="southeast">Southeast</option>
-        <option value="southwest">Southwest</option>
+        <option class="filter-option" value="All">All</option>
+        <option class="filter-option" value="northeast">Northeast</option>
+        <option class="filter-option" value="northwest">Northwest</option>
+        <option class="filter-option" value="southeast">Southeast</option>
+        <option class="filter-option" value="southwest">Southwest</option>
       </select>
     </div>
 
     <div id="smoker-dropdown" class="filter-dropdown">
-      <label for="smokerSelector" >Select Smoker Status:</label>
+      <label for="smokerSelector">Select Smoker Status:</label>
       <select id="smokerSelector" class="filter-selection">
-        <option value="All">All</option>
-        <option value="yes">Smoker</option>
-        <option value="no">non-smoker</option>
+        <option class="filter-option" value="All">All</option>
+        <option class="filter-option" value="yes">Smoker</option>
+        <option class="filter-option" value="no">non-smoker</option>
       </select>
     </div>
   </div>
@@ -152,6 +192,47 @@
     <div class="scatter-plot" id="beehive-charges">
       <h2 class="title">Distribution of Insurance Costs</h2>
       <div>(In USD)</div>
+    </div>
+    <div class="panel-vertical">
+      <div id="dashboard">
+        <h2>Summary Statistics</h2>
+        <div class="dashboard-inner">
+          <div class="dashboard-item" id="mean">
+            <div class="dashboard-field">Mean: </div><span></span>
+          </div>
+          <br />
+          <div class="dashboard-item" id="min">
+            <div class="dashboard-field">Min value: </div><span></span>
+          </div>
+          <div class="dashboard-item" id="q1">
+            <div class="dashboard-field">1st Quartile: </div><span></span>
+          </div>
+          <div class="dashboard-item" id="median">
+            <div class="dashboard-field">Median: </div><span></span>
+          </div>
+          <div class="dashboard-item" id="q3">
+            <div class="dashboard-field">3rd Quartile: </div><span></span>
+          </div>
+          <div class="dashboard-item" id="max">
+            <div class="dashboard-field">Max value: </div><span></span>
+          </div>
+          <br />
+          <div class="dashboard-item" id="stddev">
+            <div class="dashboard-field">Standard Deviation: </div><span></span>
+          </div>
+        </div>
+      </div>
+      <div id="legend">
+        <h2>Plot Legend</h2>
+        <div class="dashboard-inner">
+          <div class="legend-item">
+            <div class="legend-icon blue"></div><span>Non-Smoker</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-icon orange"></div><span>Smoker</span>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="scatter-plot" id="scatter-plot1">
       <h2>Charges by Age</h2>
@@ -164,24 +245,6 @@
     </div>
     <div class="scatter-plot" id="scatter-plot4">
       <h2>Charges by Smoker</h2>
-    </div>
-    <div id="dashboard">
-      <div class="dashboard-item" id="mean">
-        <div class="dashboard-field">Mean: </div><span></span>
-      </div>
-      <div class="dashboard-item" id="q1">
-        <div class="dashboard-field">1st Quartile: </div><span></span>
-      </div>
-      <div class="dashboard-item" id="median">
-        <div class="dashboard-field">Median: </div><span></span>
-      </div>
-      <div class="dashboard-item" id="q3">
-        <div class="dashboard-field">3rd Quartile: </div><span></span>
-      </div>
-      <div class="dashboard-item" id="stddev">
-        <div class="dashboard-field">Standard Deviation: </div><span></span>
-      </div>
-
     </div>
   </div>
 
@@ -440,13 +503,15 @@
       const radiusScale = d3.scaleLinear().domain([0, d3.max(data, d => +d.children)]).range([2, 6]);
 
       // Create circle elements for the beeswarm plot
-      var beehive = svgBeehive.selectAll("circle")
-        .data(data).enter().append("circle")
+      var beehivedata = svgBeehive.selectAll("circle")
+        .data(data)
+
+      var beehive = beehivedata.enter().append("circle")
         .attr("cx", d => chargesScale(+d.charges))
         .attr("cy", height / 2)
         .attr("r", d => radiusScale(+d.children)) // Adjust the radius as needed
         .attr("fill", d => getColor(d.smoker, true))
-        .attr("stroke", "white")
+        .attr("stroke", "rgba(255,255,255,0.5)")
         .on("mouseover", function (event, d) {
           // Show tooltip on hover
           d3.select("#tooltip")
@@ -459,33 +524,6 @@
           // Hide tooltip on mouseout
           d3.select("#tooltip").style("display", "none");
         });
-
-      let simulation = d3.forceSimulation(data)
-        .force("x", d3.forceX((d) => {
-          return chargesScale(+d.charges);
-        }).strength(1))
-        .force("y", d3.forceY((d) => {
-          return height / 2;
-        }).strength(0.06))
-        .force("collide", d3.forceCollide((d) => {
-          return radiusScale(+d.children)
-        }))
-        .alphaDecay(0)
-        .alpha(1)
-        .on("tick", tick)
-
-      // Update the alpha decay after a delay
-      let decay = setTimeout(function () {
-        simulation.alphaDecay(0.05);
-      }, 1000);
-
-      function tick() {
-        beehive
-          .attr("cx", (d) => {
-            return d.x
-          })
-          .attr("cy", (d) => d.y);
-      }
 
       // Plot points to the Charges vs. Age
       var circles1 = svg1.selectAll("circle")
@@ -579,10 +617,14 @@
       const regionDropdown = d3.select("#region-dropdown");
 
       regionDropdown.on("change", function () {
-        const selectedRegion = d3.select(this).select("#regionSelector").property("value");
+        const selectedRegion = d3.select("#regionSelector").property("value");
+        const selectedSmoker = d3.select("#smokerSelector").property("value");
+
+        let filteredData = data
 
         // Filter data based on the selected region
-        const filteredData = (selectedRegion === "All") ? data : data.filter(d => d.region === selectedRegion);
+        filteredData = (selectedRegion === "All") ? filteredData : filteredData.filter(d => d.region === selectedRegion);
+        filteredData = (selectedSmoker === "All") ? filteredData : filteredData.filter(d => d.smoker === selectedSmoker);
 
         // Update circles and statistics
         updateCircles(filteredData);
@@ -591,11 +633,15 @@
 
       const smokerDropdown = d3.select("#smoker-dropdown")
       smokerDropdown.on("change", function () {
-        const selectedSmoker = d3.select(this).select("#smokerSelector").property("value");
+        const selectedRegion = d3.select("#regionSelector").property("value");
+        const selectedSmoker = d3.select("#smokerSelector").property("value");
+
+        let filteredData = data
 
         // Filter data based on the selected region
-        const filteredData = (selectedSmoker === "All") ? data : data.filter(d => d.smoker === selectedSmoker);
-        console.log(filteredData)
+        filteredData = (selectedRegion === "All") ? filteredData : filteredData.filter(d => d.region === selectedRegion);
+        filteredData = (selectedSmoker === "All") ? filteredData : filteredData.filter(d => d.smoker === selectedSmoker);
+
         // Update circles and statistics
         updateCircles(filteredData);
         updateStatistics(filteredData);
@@ -605,6 +651,42 @@
       updateCircles(data);
 
       function updateCircles(filteredData) {
+        beehivedata = svgBeehive.selectAll("circle")
+          .data(filteredData)
+        beehive = beehivedata.enter().append("circle").merge(beehive)
+          .attr("cx", d => chargesScale(+d.charges))
+          .attr("cy", height / 2)
+          .attr("r", d => radiusScale(+d.children)) // Adjust the radius as needed
+          .attr("fill", d => getColor(d.smoker, true))
+          .attr("stroke", "rgba(255,255,255,0.5)")
+        beehivedata.exit().remove()
+
+        let simulation = d3.forceSimulation(data)
+          .force("x", d3.forceX((d) => {
+            return chargesScale(+d.charges);
+          }).strength(1))
+          .force("y", d3.forceY((d) => {
+            return height / 2;
+          }).strength(0.1))
+          .force("collide", d3.forceCollide((d) => {
+            return radiusScale(+d.children)
+          }))
+          .alphaDecay(0)
+          .alpha(1)
+          .on("tick", tick)
+
+        // Update the alpha decay after a delay
+        let decay = setTimeout(function () {
+          simulation.alphaDecay(0.05);
+        }, 1000);
+
+        function tick() {
+          beehive
+            .attr("cx", (d) => {
+              return d.x
+            })
+            .attr("cy", (d) => d.y);
+        }
 
         circles1 = svg1.selectAll("circle")
           .data(filteredData)
@@ -727,7 +809,7 @@
           circles4.attr("fill", d => isBrushed(extent3, xScale3(d.sex) + xScale3.bandwidth() / 2, yScale3(+d.charges)) ? getColor(d.smoker, true) : getColor(d.smoker, false));
 
           // Update statistics with brushed data
-          updateStatistics(data.filter(d => isBrushed(extent3, xScale3(d.sex), yScale3(+d.charges))));
+          updateStatistics(data.filter(d => isBrushed(extent3, xScale3(d.sex) + xScale3.bandwidth() / 2, yScale3(+d.charges))));
         }
       }
 
@@ -747,7 +829,7 @@
           circles4.attr("fill", d => isBrushed(extent4, xScale4(d.smoker) + xScale4.bandwidth() / 2, yScale4(+d.charges)) ? getColor(d.smoker, true) : getColor(d.smoker, false));
 
           // Update statistics with brushed data
-          updateStatistics(data.filter(d => isBrushed(extent4, xScale4(d.smoker), yScale4(+d.charges))));
+          updateStatistics(data.filter(d => isBrushed(extent4, xScale4(d.smoker) + xScale4.bandwidth() / 2, yScale4(+d.charges))));
         }
       }
 
@@ -758,7 +840,12 @@
       function updateStatistics(data) {
         const chargesArray = data.map(d => +d.charges);
 
-        // Update mean
+        const min = d3.min(chargesArray);
+        d3.select("#min span").text(min.toFixed(2));
+
+        const max = d3.max(chargesArray);
+        d3.select("#max span").text(max.toFixed(2));
+
         const mean = d3.mean(chargesArray);
         d3.select("#mean span").text(mean.toFixed(2));
 
