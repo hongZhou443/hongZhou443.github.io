@@ -1,225 +1,806 @@
-<!DOCTYPE HTML>
-<!--
-	Editorial by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Hong Zhou</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insurance Visualization</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    body {
+      font-family: monospace;
+      padding: 0rem;
+      margin: 0rem;
+    }
 
-				<!-- Main -->
-					<div id="main">
-						<div class="inner">
+    .wrapper {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      background-color: #EEE5E9;
+    }
 
-							<!-- Header -->
-								<header id="header">
-									<a href="index.html" class="logo"><strong>Hong Zhou</strong> Northwestern University</a>
-									<ul class="icons">
-										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-										<li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
-										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-										<li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>
-									</ul>
-								</header>
+    .titleboard {
+      padding: 1rem;
+      background-color: black;
+      color: white;
+    }
 
-							<!-- Banner -->
-								<section id="banner">
-									<div class="content">
-										<header>
-											<h1>Hi, I’m Hong Zhou</h1>
-											<p>Aspiring Software Engineer</p>
-										</header>
-										<p>I am a sophomore studying Computer Science at Northwestern's McCormick School of Engineering. I am proficient in Object Oriented Programming and Data Structures and Algorithms. My main languages are Python and Java, and I am familiar with analytic software like MATLAB. I am interested in Machine Learning, Artificial Intelligence and Data Science. I am also looking into the applications of computer science in finance, as well as developements in web3, blockchain technologies, and cryptocurrencies.</p>
-										<ul class="actions">
-											<li><a href="resume_pg.html" class="button big">See My Resume</a></li>
-										</ul>
-									</div>
-									
-									<span class="image object">
-										<img src="images/pic10.jpg" alt="" />
-									</span>
-									
-								</section>
+    .title {
+      margin-bottom: 0.5rem;
+    }
 
-							<!-- Section Programming Languages-->
-								<section>
-									<header class="major">
-										<h2>Programming Languages</h2>
-									</header>
-									<div class="features">
-										<article>
-											<span class="icon brands fa-python"></span>
-											<div class="content">
-												<h3>Python</h3>
-												<p>PyTorch Machine Learning, Time Series Analysis, Webscraping, Pandas, Numpy, Object Oriented Programming, Dynamic Programming.</p>
-											</div>
-										</article>
-										<article>
-											<span class="icon brands fa-java"></span>
-											<div class="content">
-												<h3>Java</h3>
-												<p>Data Structures and Algorithms, Dynamic Programming, Object Oriented Programming.</p>
-											</div>
-										</article>
-										<article>
-											<span class="icon solid fa-rocket"></span>
-											<div class="content">
-												<h3>MATLAB</h3>
-												<p>Statistical Analysis, Matrix Operations, Vector Mathematics</p>
-											</div>
-										</article>
-										<article>
-											<span class="icon brands fa-html5"></span>
-											<div class="content">
-												<h3>HTML/CSS</h3>
-												<p>Web Portfolio, HTML classes, CSS layout</p>
-											</div>
-										</article>
-									</div>
-								</section>
+    .filter-dropdown {
+      padding: 0.1rem;
+    }
 
-							<!-- Section Platforms and Frameworks-->
-							<section>
-								<header class="major">
-									<h2>Platforms and Frameworks</h2>
-								</header>
-								<div class="features">
-									<article>
-										<span class="icon solid fa-cloud"></span>
-										<div class="content">
-											<h3>Google Cloud Platforms</h3>
-											<p>Google Cloud Functions, HTTP Triggers, Bucket Triggers, BigQuery, and Virtualization.</p>
-										</div>
-									</article>
-									<article>
-										<span class="icon solid fa-file-code"></span>
-										<div class="content">
-											<h3>DJango</h3>
-											<p>Fullstack Python Web Development.</p>
-										</div>
-									</article>
-								</div>
-							</section>
+    .filter-selection {
+      cursor: pointer;
+      transition: 0.2s;
+      border-top: none;
+      border-right: none;
+      border-left: none;
+      background: none;
+      color: inherit;
+    }
 
-							<!-- Section Projects-->
-								<section>
-									<header class="major">
-										<h2><a href="projects_all.html">Projects</a></h2>
-									</header>
-									<div class="posts">
-										<article>
-											<a href="AAPL_Stock_Model_proj.html" class="image"><img src="images/stockpic01.jpg" alt="" /></a>
-											<h3>AAPL Stock Model</h3>
-											<h5>Python, Jupyter Notebooks <br>PyTorch, Matplotlib, Pandas</h5>
-											<p>Designed and implemented Long Short Term Memory (LSTM) stock prediction ML model with PyTorch library for modeling, yahoo.fin for data collection, and matplotlib for visualization.</p>
-											<ul class="actions">
-												<li><a href="AAPL_Stock_Model_proj.html" class="button">More</a></li>
-											</ul>
-										</article>
-										<article>
-											<a href="under_construction.html" class="image"><img src="images/htmlpic01.jpg" alt="" /></a>
-											<h3>Chile Webscraping</h3>
-											<h5>Python, Jupyter Notebooks <br>Python Requests, Google Cloud Platforms, Smart Proxy API</h5>
-											<p>Designed and implemented python webscraping algorithm to gather data on 180,000+ job postings with Google Cloud. Migrated to run locally with Smart Proxy API.</p>
-											<ul class="actions">
-												<li><a href="under_construction.html" class="button">More</a></li>
-											</ul>
-										</article>
-									</div>
-								</section>
+    .filter-selection:hover {
+      background-color: rgba(255, 255, 255, 0.2)
+    }
 
-						</div>
-					</div>
+    .filter-option {
+      border-radius: 0px;
+    }
 
-				<!-- Sidebar -->
-					<div id="sidebar">
-						<div class="inner">
+    .tooltip {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid #ccc;
+      padding: 5px;
+      font-size: 12px;
+      pointer-events: none;
+      display: none;
+    }
 
-							<!-- Menu -->
-								<nav id="menu">
-									<header class="major">
-										<h2>Menu</h2>
-									</header>
-									<ul>
-										<li><a href="index.html">Homepage</a></li>
-										<li><a href="resume_pg.html">Resume</a></li>
-										<li>
-											<span class="opener">Projects</span>
-											<ul>
-												<li><a href="AAPL_Stock_Model_proj.html">AAPL Stock Model</a></li>
-												<li><a href="under_construction.html">CHILE Web Scrape</a></li>
-												<li><a href="projects_all.html">See all</a></li>
-											</ul>
-										</li>
-										<li>
-											<span class="opener">Affiliated Organizations</span>
-											<ul>
-												<li><a href="organizations_all.html">See all</a></li>
-											</ul>
-										</li>
-										<li>
-											<span class="opener">LeetCode Solutions</span>
-											<ul>
-												<li><a href="#">See all</a></li>
-											</ul>
-										</li>
-									</ul>
-								</nav>
+    .dashboard-item {
+      display: flex;
+      flex-direction: row;
+    }
 
-							<!-- Section -->
-								<section>
-									<header class="major">
-										<h2>Featured Posts</h2>
-									</header>
-									<div class="mini-posts">
-										<article>
-											<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-										</article>
-									</div>
-									<ul class="actions">
-										<li><a href="#" class="button">More</a></li>
-									</ul>
-								</section>
+    .dashboard-field {
+      width: 10rem;
+    }
 
-							<!-- Section -->
-								<section>
-									<header class="major">
-										<h2>Get in touch</h2>
-									</header>
-									<p>Sed varius enim lorem ullamcorper dolore aliquam aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin sed aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-									<ul class="contact">
-										<li class="icon solid fa-envelope"><a href="#">hongzhou221@gmail.com</a></li>
-										<li class="icon solid fa-phone">(425) 236-7362</li>
-									</ul>
-								</section>
+    #dashboard {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      margin: 2rem;
+      padding: 1rem;
+      width: 550px;
+      height: 100px;
+      box-shadow: 0 0 5px 0 black;
+      background-color: white;
+    }
 
-							<!-- Footer -->
-								<footer id="footer">
-									<p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
-								</footer>
+    #beehive-charges {
+      margin: 2rem;
+      padding: 1rem;
+      box-shadow: 0 0 5px 0 black;
+      background-color: white;
+    }
 
-						</div>
-					</div>
+    #scatter-plot1 {
+      margin: 2rem;
+      padding: 1rem;
+      box-shadow: 0 0 5px 0 black;
+      background-color: white;
+    }
 
-			</div>
+    #scatter-plot2 {
+      margin: 2rem;
+      padding: 1rem;
+      box-shadow: 0 0 5px 0 black;
+      background-color: white;
+    }
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+    #scatter-plot3 {
+      margin: 2rem;
+      padding: 1rem;
+      box-shadow: 0 0 5px 0 black;
+      background-color: white;
+    }
 
-	</body>	
+    #scatter-plot4 {
+      margin: 2rem;
+      padding: 1rem;
+      box-shadow: 0 0 5px 0 black;
+      background-color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="titleboard">
+    <h1 class="title">Annual Medical Insurance Costs</h1>
+    <div>Data sourced from <a href="https://www.kaggle.com/datasets/willianoliveiragibin/healthcare-insurance">Kaggle.com</a></div>
+    <br/>
+    <div id="region-dropdown" class="filter-dropdown">
+      <label for="regionSelector">Select Region:</label>
+      <select id="regionSelector" class="filter-selection">
+        <option value="All">All</option>
+        <option value="northeast">Northeast</option>
+        <option value="northwest">Northwest</option>
+        <option value="southeast">Southeast</option>
+        <option value="southwest">Southwest</option>
+      </select>
+    </div>
+
+    <div id="smoker-dropdown" class="filter-dropdown">
+      <label for="smokerSelector" >Select Smoker Status:</label>
+      <select id="smokerSelector" class="filter-selection">
+        <option value="All">All</option>
+        <option value="yes">Smoker</option>
+        <option value="no">non-smoker</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="wrapper">
+    <div class="scatter-plot" id="beehive-charges">
+      <h2 class="title">Distribution of Insurance Costs</h2>
+      <div>(In USD)</div>
+    </div>
+    <div class="scatter-plot" id="scatter-plot1">
+      <h2>Charges by Age</h2>
+    </div>
+    <div class="scatter-plot" id="scatter-plot2">
+      <h2>Charges by BMI</h2>
+    </div>
+    <div class="scatter-plot" id="scatter-plot3">
+      <h2>Charges by Sex</h2>
+    </div>
+    <div class="scatter-plot" id="scatter-plot4">
+      <h2>Charges by Smoker</h2>
+    </div>
+    <div id="dashboard">
+      <div class="dashboard-item" id="mean">
+        <div class="dashboard-field">Mean: </div><span></span>
+      </div>
+      <div class="dashboard-item" id="q1">
+        <div class="dashboard-field">1st Quartile: </div><span></span>
+      </div>
+      <div class="dashboard-item" id="median">
+        <div class="dashboard-field">Median: </div><span></span>
+      </div>
+      <div class="dashboard-item" id="q3">
+        <div class="dashboard-field">3rd Quartile: </div><span></span>
+      </div>
+      <div class="dashboard-item" id="stddev">
+        <div class="dashboard-field">Standard Deviation: </div><span></span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="tooltip" id="tooltip"></div>
+
+  <script>
+    // load and parse data file
+    d3.csv("insurance.csv").then(data => {
+      // Check if data load is successful
+      if (!data || data.length === 0) {
+        console.error("Empty or invalid data format.");
+        return;
+      }
+
+      // Chart dimensions
+      const margin = { top: 20, right: 20, bottom: 60, left: 60 };
+      const width = 550 - margin.left - margin.right;
+      const width_small = 225 - margin.left - margin.right;
+      const height = 400 - margin.top - margin.bottom;
+
+      // Find the minimal values
+      const minAge = d3.min(data, d => +d.age);
+      const minCharges = d3.min(data, d => +d.charges);
+      const minBmi = d3.min(data, d => +d.bmi);
+
+      // Create SVG container for the beehive plot (charges)
+      const svgBeehive = d3.select("#beehive-charges")
+        .append("div")
+        .style("position", "relative")
+        .append("svg")
+        .attr("width", 1115 + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("id", "beehive")
+        .attr("transform", `translate(${margin.left},${margin.top})`);
+
+      // Create a beeswarm layout
+      const chargesScale = d3.scaleLinear()
+        .domain([0, d3.max(data, d => +d.charges)])
+        .range([0, 1115]);
+
+      // create x-axis for beeswarm plot
+      const xAxisBee = d3.axisBottom(chargesScale)
+      svgBeehive.append("g")
+        .attr("transform", `translate(0,${height})`)
+        .call(xAxisBee)
+        .append("text")
+        .attr("x", 1115 / 2)
+        .attr("y", margin.bottom - 10)
+        .attr("fill", "#000")
+        .attr("text-anchor", "middle")
+        .text("Charges");
+
+      // Add brushing for the beeswarm plot
+      const brush0 = d3.brush()
+        .extent([[0, 0], [1115, height]])
+        .on("brush", brushed0);
+
+      svgBeehive.append("g")
+        .attr("class", "brush")
+        .call(brush0);
+
+      // Create SVG container for the first scatter plot (charges vs. age)
+      const svg1 = d3.select("#scatter-plot1")
+        .append("div")
+        .style("position", "relative")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", `translate(${margin.left},${margin.top})`);
+
+      // Create scales for the first scatter plot
+      const xScale1 = d3.scaleLinear().domain([minAge, d3.max(data, d => +d.age)]).range([0, width]);
+      const yScale1 = d3.scaleLinear().domain([minCharges, d3.max(data, d => +d.charges)]).range([height, 0]);
+
+      // Create x-axis for the first scatter plot
+      const xAxis1 = d3.axisBottom(xScale1);
+      svg1.append("g")
+        .attr("transform", `translate(0,${height})`)
+        .call(xAxis1)
+        .append("text")
+        .attr("x", width / 2)
+        .attr("y", margin.bottom - 10)
+        .attr("fill", "#000")
+        .attr("text-anchor", "middle")
+        .text("Age");
+
+      // Create y-axis for the first scatter plot
+      const yAxis1 = d3.axisLeft(yScale1);
+      svg1.append("g")
+        .call(yAxis1)
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", -margin.left + 10)
+        .attr("x", -height / 2)
+        .attr("dy", "0.71em")
+        .attr("fill", "#000")
+        .attr("text-anchor", "middle")
+        .text("Charges")
+
+      // Add brushing for the first scatter plot
+      const brush1 = d3.brush()
+        .extent([[0, 0], [width, height]])
+        .on("brush", brushed1);
+
+      svg1.append("g")
+        .attr("class", "brush")
+        .call(brush1);
+
+      // Create SVG container for the second scatter plot (charges vs. bmi)
+      const svg2 = d3.select("#scatter-plot2")
+        .append("div")
+        .style("position", "relative")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", `translate(${margin.left},${margin.top})`);
+
+      // Create scales for the second scatter plot
+      const xScale2 = d3.scaleLinear().domain([minBmi, d3.max(data, d => +d.bmi)]).range([0, width]);
+      const yScale2 = d3.scaleLinear().domain([minCharges, d3.max(data, d => +d.charges)]).range([height, 0]);
+
+      // Create x-axis for the second scatter plot
+      const xAxis2 = d3.axisBottom(xScale2);
+      svg2.append("g")
+        .attr("transform", `translate(0,${height})`)
+        .call(xAxis2)
+        .append("text")
+        .attr("x", width / 2)
+        .attr("y", margin.bottom - 10)
+        .attr("fill", "#000")
+        .attr("text-anchor", "middle")
+        .text("BMI");
+
+      // Create y-axis for the second scatter plot
+      const yAxis2 = d3.axisLeft(yScale2);
+      svg2.append("g")
+        .call(yAxis2)
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", -margin.left + 10)
+        .attr("x", -height / 2)
+        .attr("dy", "0.71em")
+        .attr("fill", "#000")
+        .attr("text-anchor", "middle")
+        .text("Charges");
+
+      // Add brushing for the second scatter plot
+      const brush2 = d3.brush()
+        .extent([[0, 0], [width, height]])
+        .on("brush", brushed2);
+
+      svg2.append("g")
+        .attr("class", "brush")
+        .call(brush2);
+
+      // Create SVG container for the third scatter plot (charges vs. sex)
+      const svg3 = d3.select("#scatter-plot3")
+        .append("div")
+        .style("position", "relative")
+        .append("svg")
+        .attr("width", width_small + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", `translate(${margin.left},${margin.top})`);
+
+      // Create scales for the third scatter plot
+      const xScale3 = d3.scaleBand().domain(data.map(d => d.sex)).range([0, width_small]).padding(0.1);
+      const yScale3 = d3.scaleLinear().domain([minCharges, d3.max(data, d => +d.charges)]).range([height, 0]);
+
+      // Create x-axis for the third scatter plot
+      const xAxis3 = d3.axisBottom(xScale3);
+      svg3.append("g")
+        .attr("transform", `translate(0,${height})`)
+        .call(xAxis3)
+        .append("text")
+        .attr("x", width_small / 2)
+        .attr("y", margin.bottom - 10)
+        .attr("fill", "#000")
+        .attr("text-anchor", "middle")
+        .text("Sex");
+
+      // Create y-axis for the third scatter plot
+      const yAxis3 = d3.axisLeft(yScale3);
+      svg3.append("g")
+        .call(yAxis3)
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", -margin.left + 10)
+        .attr("x", -height / 2)
+        .attr("dy", "0.71em")
+        .attr("fill", "#000")
+        .attr("text-anchor", "middle")
+        .text("Charges");
+
+      // Add brushing for the third scatter plot
+      const brush3 = d3.brush()
+        .extent([[0, 0], [width_small, height]])
+        .on("brush", brushed3);
+
+      svg3.append("g")
+        .attr("class", "brush")
+        .call(brush3);
+
+      // Create SVG container for the fourth plot (charges vs. smoker)
+      const svg4 = d3.select("#scatter-plot4")
+        .append("div")
+        .style("position", "relative")
+        .append("svg")
+        .attr("width", width_small + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", `translate(${margin.left},${margin.top})`);
+
+      // Create scales for the fourth scatter plot
+      const xScale4 = d3.scaleBand().domain(data.map(d => d.smoker)).range([0, width_small]).padding(0.1);
+      const yScale4 = d3.scaleLinear().domain([minCharges, d3.max(data, d => +d.charges)]).range([height, 0]);
+
+      // Create x-axis for the fourth scatter plot
+      const xAxis4 = d3.axisBottom(xScale4);
+      svg4.append("g")
+        .attr("transform", `translate(0,${height})`)
+        .call(xAxis4)
+        .append("text")
+        .attr("x", width_small / 2)
+        .attr("y", margin.bottom - 10)
+        .attr("fill", "#000")
+        .attr("text-anchor", "middle")
+        .text("Smoker");
+
+      // Create y-axis for the fourth scatter plot
+      const yAxis4 = d3.axisLeft(yScale4);
+      svg4.append("g")
+        .call(yAxis4)
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", -margin.left + 10)
+        .attr("x", -height / 2)
+        .attr("dy", "0.71em")
+        .attr("fill", "#000")
+        .attr("text-anchor", "middle")
+        .text("Charges");
+
+      // Add brushing for the fourth scatter plot
+      const brush4 = d3.brush()
+        .extent([[0, 0], [width_small, height]])
+        .on("brush", brushed4);
+
+      svg4.append("g")
+        .attr("class", "brush")
+        .call(brush4);
+
+      // Create radius scales for the scatter plots
+      const radiusScale = d3.scaleLinear().domain([0, d3.max(data, d => +d.children)]).range([2, 6]);
+
+      // Create circle elements for the beeswarm plot
+      var beehive = svgBeehive.selectAll("circle")
+        .data(data).enter().append("circle")
+        .attr("cx", d => chargesScale(+d.charges))
+        .attr("cy", height / 2)
+        .attr("r", d => radiusScale(+d.children)) // Adjust the radius as needed
+        .attr("fill", d => getColor(d.smoker, true))
+        .attr("stroke", "white")
+        .on("mouseover", function (event, d) {
+          // Show tooltip on hover
+          d3.select("#tooltip")
+            .style("display", "block")
+            .style("left", (event.pageX + 10) + "px")
+            .style("top", (event.pageY - 10) + "px")
+            .html(`<div>Charges: ${d.charges}</div>`);
+        })
+        .on("mouseout", function () {
+          // Hide tooltip on mouseout
+          d3.select("#tooltip").style("display", "none");
+        });
+
+      let simulation = d3.forceSimulation(data)
+        .force("x", d3.forceX((d) => {
+          return chargesScale(+d.charges);
+        }).strength(1))
+        .force("y", d3.forceY((d) => {
+          return height / 2;
+        }).strength(0.06))
+        .force("collide", d3.forceCollide((d) => {
+          return radiusScale(+d.children)
+        }))
+        .alphaDecay(0)
+        .alpha(1)
+        .on("tick", tick)
+
+      // Update the alpha decay after a delay
+      let decay = setTimeout(function () {
+        simulation.alphaDecay(0.05);
+      }, 1000);
+
+      function tick() {
+        beehive
+          .attr("cx", (d) => {
+            return d.x
+          })
+          .attr("cy", (d) => d.y);
+      }
+
+      // Plot points to the Charges vs. Age
+      var circles1 = svg1.selectAll("circle")
+        .data(data)
+
+      circles1.enter().append("circle")
+        .attr("cx", d => xScale1(+d.age))
+        .attr("cy", d => yScale1(+d.charges))
+        .attr("r", d => radiusScale(+d.children))
+        .attr("fill", d => getColor(d.smoker, true))
+        .on("mouseover", function (event, d) {
+          // Show tooltip on hover
+          d3.select("#tooltip")
+            .style("display", "block")
+            .style("left", (event.pageX + 10) + "px")
+            .style("top", (event.pageY - 10) + "px")
+            .html(`<div>Charges: ${d.charges}</div><div>Age: ${d.age}</div><div>Children: ${d.children}</div>`);
+        })
+        .on("mouseout", function () {
+          // Hide tooltip on mouseout
+          d3.select("#tooltip").style("display", "none");
+        });
+
+      // Plot points to Charges vs. BMI
+      var circles2 = svg2.selectAll("circle")
+        .data(data)
+
+      circles2.enter().append("circle")
+        .attr("cx", d => xScale2(+d.bmi))
+        .attr("cy", d => yScale2(+d.charges))
+        .attr("r", d => radiusScale(+d.children))
+        .attr("fill", d => getColor(d.smoker, true))
+        .on("mouseover", function (event, d) {
+          // Show tooltip on hover
+          d3.select("#tooltip")
+            .style("display", "block")
+            .style("left", (event.pageX + 10) + "px")
+            .style("top", (event.pageY - 10) + "px")
+            .html(`<div>Charges: ${d.charges}</div><div>BMI: ${d.bmi}</div><div>Children: ${d.children}</div>`);
+        })
+        .on("mouseout", function () {
+          // Hide tooltip on mouseout
+          d3.select("#tooltip").style("display", "none");
+        });
+
+      // Plot points to Charges vs. Sex
+      var circles3 = svg3.selectAll("circle")
+        .data(data)
+
+      circles3.enter().append("circle")
+        .attr("cx", d => xScale3(d.sex) + xScale3.bandwidth() / 2)
+        .attr("cy", d => yScale3(+d.charges))
+        .attr("r", d => radiusScale(+d.children))
+        .attr("fill", d => getColor(d.smoker, true))
+        .on("mouseover", function (event, d) {
+          // Show tooltip on hover
+          d3.select("#tooltip")
+            .style("display", "block")
+            .style("left", (event.pageX + 10) + "px")
+            .style("top", (event.pageY - 10) + "px")
+            .html(`<div>Charges: ${d.charges}</div><div>Sex: ${d.sex}</div><div>Children: ${d.children}</div>`);
+        })
+        .on("mouseout", function () {
+          // Hide tooltip on mouseout
+          d3.select("#tooltip").style("display", "none");
+        });
+
+      // Plot points to Charges vs. Smoker
+      var circles4 = svg4.selectAll("circle")
+        .data(data)
+
+      circles4.enter().append("circle")
+        .attr("cx", d => xScale4(d.smoker) + xScale4.bandwidth() / 2)
+        .attr("cy", d => yScale4(+d.charges))
+        .attr("r", d => radiusScale(+d.children))
+        .attr("fill", d => getColor(d.smoker, true))
+        .on("mouseover", function (event, d) {
+          // Show tooltip on hover
+          d3.select("#tooltip")
+            .style("display", "block")
+            .style("left", (event.pageX + 10) + "px")
+            .style("top", (event.pageY - 10) + "px")
+            .html(`<div>Charges: ${d.charges}</div><div>Sex: ${d.sex}</div><div>Children: ${d.children}</div>`);
+        })
+        .on("mouseout", function () {
+          // Hide tooltip on mouseout
+          d3.select("#tooltip").style("display", "none");
+        });
+
+      // Dropdown menu for region filtering
+      const regionDropdown = d3.select("#region-dropdown");
+
+      regionDropdown.on("change", function () {
+        const selectedRegion = d3.select(this).select("#regionSelector").property("value");
+
+        // Filter data based on the selected region
+        const filteredData = (selectedRegion === "All") ? data : data.filter(d => d.region === selectedRegion);
+
+        // Update circles and statistics
+        updateCircles(filteredData);
+        updateStatistics(filteredData);
+      });
+
+      const smokerDropdown = d3.select("#smoker-dropdown")
+      smokerDropdown.on("change", function () {
+        const selectedSmoker = d3.select(this).select("#smokerSelector").property("value");
+
+        // Filter data based on the selected region
+        const filteredData = (selectedSmoker === "All") ? data : data.filter(d => d.smoker === selectedSmoker);
+        console.log(filteredData)
+        // Update circles and statistics
+        updateCircles(filteredData);
+        updateStatistics(filteredData);
+      });
+
+      updateStatistics(data);
+      updateCircles(data);
+
+      function updateCircles(filteredData) {
+
+        circles1 = svg1.selectAll("circle")
+          .data(filteredData)
+        circles1.enter().append("circle")
+          .merge(circles1)
+          .attr("cx", d => xScale1(+d.age))
+          .attr("cy", d => yScale1(+d.charges))
+          .attr("fill", d => getColor(d.smoker, true));
+
+        circles1.exit().remove()
+
+        circles2 = svg2.selectAll("circle")
+          .data(filteredData)
+
+        circles2.enter().append("circle")
+          .merge(circles2)
+          .attr("cx", d => xScale2(+d.bmi))
+          .attr("cy", d => yScale2(+d.charges))
+          .attr("fill", d => getColor(d.smoker, true));
+
+        circles2.exit().remove()
+
+        // update plot 3
+        circles3 = svg3.selectAll("circle")
+          .data(filteredData)
+
+        circles3.enter().append("circle")
+          .merge(circles3)
+          .attr("cx", d => xScale3(d.sex) + xScale3.bandwidth() / 2)
+          .attr("cy", d => yScale3(+d.charges))
+          .attr("fill", d => getColor(d.smoker, true));
+
+        circles3.exit().remove()
+
+        // update plot 4
+        circles4 = svg4.selectAll("circle")
+          .data(filteredData)
+
+        circles4.enter().append("circle")
+          .merge(circles4)
+          .attr("cx", d => xScale4(d.smoker) + xScale4.bandwidth() / 2)
+          .attr("cy", d => yScale4(+d.charges))
+          .attr("fill", d => getColor(d.smoker, true));
+
+        circles4.exit().remove()
+
+        updateStatistics(filteredData)
+      }
+
+      function brushed0(event) {
+        const extent0 = event.selection;
+
+        if (!extent0) {
+          // Reset if no selection
+          beehive.attr("fill", d => getColor(d.smoker, true));
+          updateStatistics(data);
+        } else {
+          beehive.attr("fill", d => isBrushed(extent0, chargesScale(+d.charges), +d.y) ? getColor(d.smoker, true) : getColor(d.smoker, false));
+          circles1.attr("fill", d => isBrushed(extent0, chargesScale(+d.charges), +d.y) ? getColor(d.smoker, true) : getColor(d.smoker, false));
+          circles2.attr("fill", d => isBrushed(extent0, chargesScale(+d.charges), +d.y) ? getColor(d.smoker, true) : getColor(d.smoker, false));
+          circles3.attr("fill", d => isBrushed(extent0, chargesScale(+d.charges), +d.y) ? getColor(d.smoker, true) : getColor(d.smoker, false));
+          circles4.attr("fill", d => isBrushed(extent0, chargesScale(+d.charges), +d.y) ? getColor(d.smoker, true) : getColor(d.smoker, false));
+
+          // Update statistics with brushed data
+          updateStatistics(data.filter(d => isBrushed(extent0, chargesScale(+d.charges), +d.y)));
+        }
+      }
+
+      function brushed1(event) {
+        const extent1 = event.selection;
+
+        if (!extent1) {
+          // Reset if no selection
+          circles1.attr("fill", d => getColor(d.smoker, true));
+          updateStatistics(data);
+        } else {
+          beehive.attr("fill", d => isBrushed(extent1, xScale1(+d.age), yScale1(+d.charges)) ? getColor(d.smoker, true) : getColor(d.smoker, false));
+          circles1.attr("fill", d => isBrushed(extent1, xScale1(+d.age), yScale1(+d.charges)) ? getColor(d.smoker, true) : getColor(d.smoker, false));
+          circles2.attr("fill", d => isBrushed(extent1, xScale1(+d.age), yScale1(+d.charges)) ? getColor(d.smoker, true) : getColor(d.smoker, false));
+          circles3.attr("fill", d => isBrushed(extent1, xScale1(+d.age), yScale1(+d.charges)) ? getColor(d.smoker, true) : getColor(d.smoker, false));
+          circles4.attr("fill", d => isBrushed(extent1, xScale1(+d.age), yScale1(+d.charges)) ? getColor(d.smoker, true) : getColor(d.smoker, false));
+
+          // Update statistics with brushed data
+          updateStatistics(data.filter(d => isBrushed(extent1, xScale1(+d.age), yScale1(+d.charges))));
+        }
+      }
+
+      function brushed2(event) {
+        const extent2 = event.selection;
+
+        if (!extent2) {
+          // Reset if no selection
+          circles2.attr("fill", d => getColor(d.smoker, true));
+          updateStatistics(data);
+        } else {
+          beehive.attr("fill", d => isBrushed(extent2, xScale2(+d.age), yScale2(+d.charges)) ? getColor(d.smoker, true) : getColor(d.smoker, false));
+          circles1.attr("fill", d => isBrushed(extent2, xScale2(+d.bmi), yScale2(+d.charges)) ? getColor(d.smoker, true) : getColor(d.smoker, false));
+          circles2.attr("fill", d => isBrushed(extent2, xScale2(+d.bmi), yScale2(+d.charges)) ? getColor(d.smoker, true) : getColor(d.smoker, false));
+          circles3.attr("fill", d => isBrushed(extent2, xScale2(+d.bmi), yScale2(+d.charges)) ? getColor(d.smoker, true) : getColor(d.smoker, false));
+          circles4.attr("fill", d => isBrushed(extent2, xScale2(+d.bmi), yScale2(+d.charges)) ? getColor(d.smoker, true) : getColor(d.smoker, false));
+
+          // Update statistics with brushed data
+          updateStatistics(data.filter(d => isBrushed(extent2, xScale2(+d.bmi), yScale2(+d.charges))));
+        }
+      }
+
+      // Function to handle brushing for the third scatter plot
+      function brushed3(event) {
+        const extent3 = event.selection;
+
+        if (!extent3) {
+          // Reset if no selection
+          circles3.attr("fill", d => getColor(d.smoker, true));
+          updateStatistics(data);
+        } else {
+          beehive.attr("fill", d => isBrushed(extent3, xScale3(d.sex) + xScale3.bandwidth() / 2, yScale3(+d.charges)) ? getColor(d.smoker, true) : getColor(d.smoker, false));
+          circles1.attr("fill", d => isBrushed(extent3, xScale3(d.sex) + xScale3.bandwidth() / 2, yScale3(+d.charges)) ? getColor(d.smoker, true) : getColor(d.smoker, false));
+          circles2.attr("fill", d => isBrushed(extent3, xScale3(d.sex) + xScale3.bandwidth() / 2, yScale3(+d.charges)) ? getColor(d.smoker, true) : getColor(d.smoker, false));
+          circles3.attr("fill", d => isBrushed(extent3, xScale3(d.sex) + xScale3.bandwidth() / 2, yScale3(+d.charges)) ? getColor(d.smoker, true) : getColor(d.smoker, false));
+          circles4.attr("fill", d => isBrushed(extent3, xScale3(d.sex) + xScale3.bandwidth() / 2, yScale3(+d.charges)) ? getColor(d.smoker, true) : getColor(d.smoker, false));
+
+          // Update statistics with brushed data
+          updateStatistics(data.filter(d => isBrushed(extent3, xScale3(d.sex), yScale3(+d.charges))));
+        }
+      }
+
+      // Function to handle brushing for the fourth scatter plot
+      function brushed4(event) {
+        const extent4 = event.selection;
+
+        if (!extent4) {
+          // Reset if no selection
+          circles4.attr("fill", d => getColor(d.smoker, true));
+          updateStatistics(data);
+        } else {
+          beehive.attr("fill", d => isBrushed(extent4, xScale4(d.smoker) + xScale4.bandwidth() / 2, yScale4(+d.charges)) ? getColor(d.smoker, true) : getColor(d.smoker, false));
+          circles1.attr("fill", d => isBrushed(extent4, xScale4(d.smoker) + xScale4.bandwidth() / 2, yScale4(+d.charges)) ? getColor(d.smoker, true) : getColor(d.smoker, false));
+          circles2.attr("fill", d => isBrushed(extent4, xScale4(d.smoker) + xScale4.bandwidth() / 2, yScale4(+d.charges)) ? getColor(d.smoker, true) : getColor(d.smoker, false));
+          circles3.attr("fill", d => isBrushed(extent4, xScale4(d.smoker) + xScale4.bandwidth() / 2, yScale4(+d.charges)) ? getColor(d.smoker, true) : getColor(d.smoker, false));
+          circles4.attr("fill", d => isBrushed(extent4, xScale4(d.smoker) + xScale4.bandwidth() / 2, yScale4(+d.charges)) ? getColor(d.smoker, true) : getColor(d.smoker, false));
+
+          // Update statistics with brushed data
+          updateStatistics(data.filter(d => isBrushed(extent4, xScale4(d.smoker), yScale4(+d.charges))));
+        }
+      }
+
+      function isBrushed(extent, x, y) {
+        return extent[0][0] <= x && x <= extent[1][0] && extent[0][1] <= y && y <= extent[1][1];
+      }
+
+      function updateStatistics(data) {
+        const chargesArray = data.map(d => +d.charges);
+
+        // Update mean
+        const mean = d3.mean(chargesArray);
+        d3.select("#mean span").text(mean.toFixed(2));
+
+        // Update median
+        const median = d3.median(chargesArray);
+        d3.select("#median span").text(median.toFixed(2));
+
+        // Update 1st quartile
+        const q1 = d3.quantile(chargesArray, 0.25);
+        d3.select("#q1 span").text(q1.toFixed(2));
+
+        // Update 3rd quartile
+        const q3 = d3.quantile(chargesArray, 0.75);
+        d3.select("#q3 span").text(q3.toFixed(2));
+
+        // Update standard deviation
+        const stddev = d3.deviation(chargesArray);
+        d3.select("#stddev span").text(stddev.toFixed(2));
+      }
+
+      d3.select(document).on("click", function () {
+        brush0.move(svgBeehive.select(".brush"), null)
+        brush1.move(svg1.select(".brush"), null);
+        brush2.move(svg2.select(".brush"), null);
+        brush3.move(svg3.select(".brush"), null);
+        brush4.move(svg4.select(".brush"), null);
+        updateStatistics(data);
+      });
+
+      function getColor(smoker, brushed) {
+        if (smoker === "no") {
+          return brushed ? "rgba(0, 175, 255, 0.5)" : "rgba(0, 0, 0, 0.1)";
+        } else if (smoker === "yes") {
+          return brushed ? "rgba(255, 140, 0, 0.5)" : "rgba(0, 0, 0, 0.1)";
+        }
+      }
+
+    }).catch(error => {
+      console.error("Error loading CSV file:", error);
+    });
+  </script>
+
+</body>
+
 </html>
