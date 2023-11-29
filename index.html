@@ -115,12 +115,21 @@
       height: 200px;
     }
 
-    .dashboard-inner {
+    .legend-inner {
       display: flex;
       flex-direction: column;
+    }
+
+    .dashboard-inner {
+      display: flex;
+      flex-direction: row;
       flex-wrap: wrap;
       width: 550px;
-      max-height: -webkit-fill-available;
+      max-height: 100%;
+    }
+
+    .dashboard-set {
+      width: 275px;
     }
 
     #beehive-charges {
@@ -196,35 +205,52 @@
     <div class="panel-vertical">
       <div id="dashboard">
         <h2>Summary Statistics</h2>
+        <div class="dashboard-item" id="count">
+          <div class="dashboard-field">Count: </div><span></span>
+        </div>
+        <br />
         <div class="dashboard-inner">
-          <div class="dashboard-item" id="mean">
-            <div class="dashboard-field">Mean: </div><span></span>
+          <div class="dashboard-set">
+            <div class="dashboard-item" id="ci-lower">
+              <div class="dashboard-field">CI-Lower bound: </div><span></span>
+            </div>
+            <div class="dashboard-item" id="mean">
+              <div class="dashboard-field">Mean: </div><span></span>
+            </div>
+            <div class="dashboard-item" id="ci-higher">
+              <div class="dashboard-field">CI-Higher bound: </div><span></span>
+            </div>
+            <br />
+            <div class="dashboard-item" id="stddev">
+              <div class="dashboard-field">Standard Deviation: </div><span></span>
+            </div>
+            <div class="dashboard-item" id="ci-range">
+              <div class="dashboard-field">CI-Range: </div><span></span>
+            </div>
+            <br />
           </div>
-          <br />
-          <div class="dashboard-item" id="min">
-            <div class="dashboard-field">Min value: </div><span></span>
-          </div>
-          <div class="dashboard-item" id="q1">
-            <div class="dashboard-field">1st Quartile: </div><span></span>
-          </div>
-          <div class="dashboard-item" id="median">
-            <div class="dashboard-field">Median: </div><span></span>
-          </div>
-          <div class="dashboard-item" id="q3">
-            <div class="dashboard-field">3rd Quartile: </div><span></span>
-          </div>
-          <div class="dashboard-item" id="max">
-            <div class="dashboard-field">Max value: </div><span></span>
-          </div>
-          <br />
-          <div class="dashboard-item" id="stddev">
-            <div class="dashboard-field">Standard Deviation: </div><span></span>
+          <div class="dashboard-set">
+            <div class="dashboard-item" id="min">
+              <div class="dashboard-field">Min value: </div><span></span>
+            </div>
+            <div class="dashboard-item" id="q1">
+              <div class="dashboard-field">1st Quartile: </div><span></span>
+            </div>
+            <div class="dashboard-item" id="median">
+              <div class="dashboard-field">Median: </div><span></span>
+            </div>
+            <div class="dashboard-item" id="q3">
+              <div class="dashboard-field">3rd Quartile: </div><span></span>
+            </div>
+            <div class="dashboard-item" id="max">
+              <div class="dashboard-field">Max value: </div><span></span>
+            </div>
           </div>
         </div>
       </div>
       <div id="legend">
         <h2>Plot Legend</h2>
-        <div class="dashboard-inner">
+        <div class="legend-inner">
           <div class="legend-item">
             <div class="legend-icon blue"></div><span>Non-Smoker</span>
           </div>
@@ -840,6 +866,9 @@
       function updateStatistics(data) {
         const chargesArray = data.map(d => +d.charges);
 
+        const count = chargesArray.length;
+        d3.selectAll("#count span").text(count);
+
         const min = d3.min(chargesArray);
         d3.select("#min span").text(min.toFixed(2));
 
@@ -864,6 +893,15 @@
         // Update standard deviation
         const stddev = d3.deviation(chargesArray);
         d3.select("#stddev span").text(stddev.toFixed(2));
+
+        const ci_conf = 1.96;
+        const ci_higher = mean + 1.96 * stddev;
+        const ci_lower = mean - 1.96 * stddev > 0 ? mean - 1.96 * stddev : 0;
+        const ci_range = ci_higher - ci_lower;
+
+        d3.select("#ci-higher span").text(ci_higher.toFixed(2));
+        d3.select("#ci-lower span").text(ci_lower.toFixed(2));
+        d3.select("#ci-range span").text(ci_range.toFixed(2));
       }
 
       d3.select(document).on("click", function () {
