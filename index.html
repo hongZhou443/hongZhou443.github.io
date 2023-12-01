@@ -172,6 +172,33 @@
       box-shadow: 0 0 5px 0 black;
       background-color: white;
     }
+
+    #info {
+      display: flex;
+      flex-direction: row;
+    }
+
+    #instructions {
+      margin-right: 2rem;
+    }
+
+    .table-header {
+      text-align: left;
+      padding: 0.25rem;
+    }
+
+    .table-cell {
+      padding: 0.25rem;
+      width: 8rem;
+    }
+
+    .table-cell.bold {
+      font-weight: bold;
+    }
+
+    .table-cell.wide {
+      width: auto;
+    }
   </style>
 </head>
 
@@ -182,19 +209,67 @@
     <div>Data sourced from <a
         href="https://www.kaggle.com/datasets/willianoliveiragibin/healthcare-insurance">Kaggle.com</a></div>
     <br />
-    <div>
-      Info
-      <p>
-        Hover over a point to engage the tooltip. Information displayed varies depending on the relevant axis of the
-        plot.
-      </p>
-      <p>
-        Brush and link single or groups of points to highlight the selected points across all plots. The selected region
-        can be expanded or moved. Exit the selection by clicking outside of the plot.
-      </p>
-      <p>
-        <b>For better visibility of the graphs, please zoom out to about 67% on your browser.</b>
-      </p>
+    <div id="info">
+      <div id="instructions">
+        Info
+        <p>
+          Hover over a point to engage the tooltip. Information displayed varies depending on the relevant axis of the
+          plot.
+        </p>
+        <p>
+          Brush and link single or groups of points to highlight the selected points across all plots. The selected
+          region
+          can be expanded or moved. Exit the selection by clicking outside of the plot.
+        </p>
+        <p>
+          <b>For better visibility of the graphs, please zoom out to about 67% on your browser.</b>
+        </p>
+      </div>
+      <div>
+        Dataset
+        <table>
+          <tr>
+            <th class="table-header">Variable name</th>
+            <th class="table-header">Variable type</th>
+            <th class="table-header">Description</th>
+          </tr>
+          <tr>
+            <td class="table-cell bold">Charges</td>
+            <td class="table-cell bold">Numeric</td>
+            <td class="table-cell wide bold">The medical costs incurred by the insured person (annual).</td>
+          </tr>
+          <tr>
+            <td class="table-cell">Age</td>
+            <td class="table-cell">Numeric</td>
+            <td class="table-cell wide">The insured person's age.</td>
+          </tr>
+          <tr>
+            <td class="table-cell">Sex</td>
+            <td class="table-cell">Categorical</td>
+            <td class="table-cell wide">Gender (male or female) of the insured.</td>
+          </tr>
+          <tr>
+            <td class="table-cell">BMI</td>
+            <td class="table-cell">Numeric</td>
+            <td class="table-cell wide">A measure of body fat based on height and weight of the insured.</td>
+          </tr>
+          <tr>
+            <td class="table-cell">Children</td>
+            <td class="table-cell">Numeric</td>
+            <td class="table-cell wide">The number of dependents covered.</td>
+          </tr>
+          <tr>
+            <td class="table-cell">Smoker</td>
+            <td class="table-cell">Categorical</td>
+            <td class="table-cell wide">Whether the insured is a smoker (yes or no).</td>
+          </tr>
+          <tr>
+            <td class="table-cell">Region</td>
+            <td class="table-cell">Categorical</td>
+            <td class="table-cell wide">The geographic area of coverage.</td>
+          </tr>
+        </table>
+      </div>
     </div>
     <br />
     <div>
