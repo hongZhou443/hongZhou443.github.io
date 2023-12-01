@@ -13,6 +13,11 @@
       margin: 0rem;
     }
 
+    p {
+      margin-left: 1rem;
+      max-width: 30rem;
+    }
+
     .wrapper {
       display: flex;
       flex-direction: row;
@@ -33,6 +38,7 @@
 
     .filter-dropdown {
       padding: 0.1rem;
+      margin-left: 1rem;
     }
 
     .filter-selection {
@@ -176,24 +182,44 @@
     <div>Data sourced from <a
         href="https://www.kaggle.com/datasets/willianoliveiragibin/healthcare-insurance">Kaggle.com</a></div>
     <br />
-    <div id="region-dropdown" class="filter-dropdown">
-      <label for="regionSelector">Select Region:</label>
-      <select id="regionSelector" class="filter-selection">
-        <option class="filter-option" value="All">All</option>
-        <option class="filter-option" value="northeast">Northeast</option>
-        <option class="filter-option" value="northwest">Northwest</option>
-        <option class="filter-option" value="southeast">Southeast</option>
-        <option class="filter-option" value="southwest">Southwest</option>
-      </select>
+    <div>
+      Info
+      <p>
+        Hover over a point to engage the tooltip. Information displayed varies depending on the relevant axis of the
+        plot.
+      </p>
+      <p>
+        Brush and link single or groups of points to highlight the selected points across all plots. The selected region
+        can be expanded or moved. Exit the selection by clicking outside of the plot.
+      </p>
+      <p>
+        <b>For better visibility of the graphs, please zoom out to about 67% on your browser.</b>
+      </p>
     </div>
+    <br />
+    <div>
+      Filters
+      <br />
+      <br />
+      <div id="region-dropdown" class="filter-dropdown">
+        <label for="regionSelector">Select Region:</label>
+        <select id="regionSelector" class="filter-selection">
+          <option class="filter-option" value="All">All</option>
+          <option class="filter-option" value="northeast">Northeast</option>
+          <option class="filter-option" value="northwest">Northwest</option>
+          <option class="filter-option" value="southeast">Southeast</option>
+          <option class="filter-option" value="southwest">Southwest</option>
+        </select>
+      </div>
 
-    <div id="smoker-dropdown" class="filter-dropdown">
-      <label for="smokerSelector">Select Smoker Status:</label>
-      <select id="smokerSelector" class="filter-selection">
-        <option class="filter-option" value="All">All</option>
-        <option class="filter-option" value="yes">Smoker</option>
-        <option class="filter-option" value="no">non-smoker</option>
-      </select>
+      <div id="smoker-dropdown" class="filter-dropdown">
+        <label for="smokerSelector">Select Smoker Status:</label>
+        <select id="smokerSelector" class="filter-selection">
+          <option class="filter-option" value="All">All</option>
+          <option class="filter-option" value="yes">Smoker</option>
+          <option class="filter-option" value="no">non-smoker</option>
+        </select>
+      </div>
     </div>
   </div>
 
